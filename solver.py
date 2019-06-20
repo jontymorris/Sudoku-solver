@@ -1,4 +1,4 @@
-class SodokuSolver:
+class SudokuSolver:
 
     def __init__(self, board, callback):
         self.board = board
@@ -6,6 +6,9 @@ class SodokuSolver:
 
         print('Is complete:', self.is_complete())
         print('Is valid:', self.is_valid())
+
+    def solve(self):
+        pass
 
     def is_complete(self):
         '''

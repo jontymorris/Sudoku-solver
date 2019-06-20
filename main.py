@@ -1,5 +1,5 @@
-from window import SodokuWindow
-from solver import SodokuSolver
+from window import SudokuWindow
+from solver import SudokuSolver
 
 
 def solver_callback(board, status: bool, message):
@@ -11,8 +11,8 @@ def solver_callback(board, status: bool, message):
 
 def window_callback(board):
     # solve the board
-    solver = SodokuSolver(board, solver_callback)
+    solver = SudokuSolver(board, solver_callback)
 
 
 # create the window
-window = SodokuWindow(window_callback)
+window = SudokuWindow(window_callback)
