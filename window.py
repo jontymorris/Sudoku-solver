@@ -45,7 +45,7 @@ class SudokuWindow:
         for item in self.grid_entries:
             current_row.append(item.get())
 
-            if len(current_row) >= 3:
+            if len(current_row) >= 9:
                 grid.append(current_row)
                 current_row = []
         
