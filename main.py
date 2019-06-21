@@ -10,8 +10,14 @@ def solver_callback(board, status: bool, message):
 
 
 def window_callback(board):
+    print('Now trying to solve...')
+
     # solve the board
-    solver = SudokuSolver(board, solver_callback)
+    solver = SudokuSolver(board)
+    #print('is valid:', solver.is_valid())
+    print(solver.solve())
+
+    print('It finished :(')
 
 
 # create the window

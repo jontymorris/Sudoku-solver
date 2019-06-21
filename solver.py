@@ -1,18 +1,54 @@
 class SudokuSolver:
 
-    def __init__(self, board, callback):
+    def __init__(self, board, row=0, column=0):
         self.board = board
-        self.callback = callback
-
-        print('Is complete:', self.is_complete())
-        print('Is valid:', self.is_valid())
+        self.row = row
+        self.column = column
 
     def solve(self):
-        pass
+        if not self.is_valid():
+            return False
+
+        if self.is_complete():
+            return True
+        
+        self.print_board(self.board)
+
+        for value in range(1, 10):
+            new_board = self.board.copy()
+            new_board[self.row][self.column] = value
+
+            new_row = self.row
+            new_column = self.column + 1
+
+            if new_column >= 9:
+                new_row += 1
+                new_column = 0
+
+            solver = SudokuSolver(new_board, new_row, new_column)
+            
+            if solver.solve():
+                return True
+        
+        return False
+
+    def print_board(self, board):
+        output = ''
+        
+        for column in range(0, 9):
+            for row in range(0, len(board)):
+                if board[row][column] == '':
+                    output += '-'
+                else:
+                    output += str(board[row][column])
+            
+            output += '\n'
+        
+        print(output)
 
     def is_complete(self):
         '''
-        Checks there are no empty squares and the board is valid
+        Checks there are empty squares
         '''
 
         # check the board for empty squares
@@ -20,9 +56,6 @@ class SudokuSolver:
             for item in row:
                 if item == '':
                     return False
-
-        # return if the board is valid
-        return self.is_valid()
     
     def is_valid(self):
         '''
